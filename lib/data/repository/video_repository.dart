@@ -2,11 +2,14 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:video_downloader_test/data/storage/video_storage.dart';
+import 'package:video_downloader_test/models/video_storage_item/video_storage_item.dart';
+import 'package:video_downloader_test/models/video_type/video_type.dart';
 
 import '../../models/video/video.dart';
 
 class VideoRepository {
-  Future<List<Video>> getVideos() async {
+  Future<List<VideoStorageItem>> getVideos() async {
     String username = "Aqp7qj954LdNC7hJITlTBviub1wtYtRzcNK6z6BYWHT";
     String password = "";
 
@@ -23,10 +26,11 @@ class VideoRepository {
     );
     debugPrint(response.toString());
 
-    List<Video> videos = [];
+    List<VideoStorageItem> videos = [];
     ((response.data as Map<String, dynamic>)['data'] as List<dynamic>)
         .forEach((element) {
-      videos.add(Video.fromJson(element));
+      videos.add(VideoStorageItem(
+          video: Video.fromJson(element), videoType: VideoType.network));
     });
     //debugPrint(videos.first.assets['mp4']);
 

@@ -5,6 +5,6 @@ import 'package:video_downloader_test/features/videos_list/videos_list.dart';
 
 final routes = {
   "/" : (context) => const VideosList(),
-  "/video_player" : (context) =>  VideoPlayer(),
-  "/videos_list/menu_button": (context) => MenuButton(),
+  "/video_player" : (context) =>  const VideoPlayer(),
+  "/videos_list/menu_button": (context) => const MenuButton(),
 };

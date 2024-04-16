@@ -1,16 +1,35 @@
-
-
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
-import 'package:video_downloader_test/data/storage/video_storage.dart';
-import 'package:video_downloader_test/features/videos_list/videos_list.dart';
+import 'package:video_downloader_test/features/videos_list/video_bloc/video_bloc.dart';
 import 'package:video_downloader_test/models/video/video.dart';
 import 'package:video_downloader_test/models/video_storage_item/video_storage_item.dart';
 import 'package:video_downloader_test/models/video_type/video_type.dart';
 
-class DownloadVideoDialog extends StatelessWidget {
+class DownloadVideoDialog extends StatefulWidget {
   const DownloadVideoDialog({super.key});
+
+  @override
+  State<DownloadVideoDialog> createState() => _DownloadVideoDialogState();
+}
+
+class _DownloadVideoDialogState extends State<DownloadVideoDialog> {
+  late TextEditingController videoNameTextController;
+  String? videoName;
+  PlatformFile? videoFile;
+
+  @override
+  void initState() {
+    super.initState();
+    videoNameTextController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    videoNameTextController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,18 +49,23 @@ class DownloadVideoDialog extends StatelessWidget {
                 onPressed: () async {
                   final result = await FilePicker.platform.pickFiles();
                   if (result == null) return;
-
-                  final file = result.files.first;
-                  VideoStorage().videosData.add(VideoStorageItem(
-                      Video(
-                          title: file.name,
-                          assets: {'mp4': file.path.toString()}),
-                      VideoType.file));
+                  videoFile = result.files.first;
+                  videoNameTextController.text = videoFile!.name;
                 },
                 color: const Color(0xFFF5BA41)),
             _buildElevatedButton(
               text: "Готово",
-              onPressed: () {},
+              onPressed: () {
+                if (videoFile != null) {
+                  context.read<VideoBloc>().add(AddLocalVideoEvent(
+                      localVideo: VideoStorageItem(
+                          video: Video(
+                              title: videoName ?? videoFile!.name,
+                              assets: {'mp4': videoFile!.path.toString()}),
+                          videoType: VideoType.file)));
+                }
+                Navigator.pop(context);
+              },
               color: Theme.of(context).primaryColor,
             ),
           ],
@@ -54,19 +78,24 @@ class DownloadVideoDialog extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
       width: 244,
-      height: 44,
+      height: 56,
       decoration: BoxDecoration(
         border: Border.all(width: 1),
         borderRadius: const BorderRadius.all(Radius.circular(14)),
       ),
-      child: const TextField(
-        decoration: InputDecoration(
+      child: TextField(
+        maxLines: 1,
+        decoration: const InputDecoration(
           hintStyle: TextStyle(),
           hintText: 'Название видео.com',
           contentPadding: EdgeInsets.all(8),
           border: InputBorder.none,
         ),
         scribbleEnabled: false,
+        controller: videoNameTextController,
+        onChanged: (String value) {
+            videoName = value;
+        },
       ),
     );
   }

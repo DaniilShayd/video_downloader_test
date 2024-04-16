@@ -35,6 +35,7 @@ class _MenuButtonState extends State<MenuButton> {
                   ElevatedButton(
                     child: const Text("Добавить видео"),
                     onPressed: () {
+                      Navigator.pop(context);
                       _showDialog();
                     },
                   ),
@@ -53,7 +54,7 @@ class _MenuButtonState extends State<MenuButton> {
       context: context,
       builder: (BuildContext context) {
         // return object of type Dialog
-        return DownloadVideoDialog();
+        return const DownloadVideoDialog();
       },
     );
   }
