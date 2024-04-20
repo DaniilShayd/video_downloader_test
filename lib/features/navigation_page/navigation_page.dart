@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../video_sets_list/video_sets_list.dart';
-import '../videos_list/auxiliary_widgets/menu_button/menu_button.dart';
+
 import '../videos_list/videos_list.dart';
+import 'auxilliary_widgets/menu_button/menu_button.dart';
 
 class NavigationPage extends StatefulWidget {
   const NavigationPage({super.key});

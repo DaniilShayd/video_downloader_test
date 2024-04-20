@@ -15,6 +15,9 @@ class VideoSetView extends StatelessWidget {
     final int index = arguments['set_index'] as int;
     final VideoSet indexedSet = VideoStorage().videosSets[index];
     return Scaffold(
+      appBar: AppBar(
+        title: Text(indexedSet.setTitle),
+      ),
       body: Padding(
         padding: const EdgeInsets.only(top: 44),
         child: CustomScrollView(
