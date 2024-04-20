@@ -94,7 +94,7 @@ class _DownloadVideoDialogState extends State<DownloadVideoDialog> {
         scribbleEnabled: false,
         controller: videoNameTextController,
         onChanged: (String value) {
-            videoName = value;
+          videoName = value;
         },
       ),
     );

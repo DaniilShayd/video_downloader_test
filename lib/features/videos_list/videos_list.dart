@@ -1,32 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
-
-import 'package:video_downloader_test/data/repository/video_repository.dart';
-import 'package:video_downloader_test/data/storage/video_storage.dart';
-import 'package:video_downloader_test/models/video_storage_item/video_storage_item.dart';
-import 'package:video_downloader_test/models/video_type/video_type.dart';
 import 'package:video_downloader_test/features/videos_list/auxiliary_widgets/menu_button/menu_button.dart';
 import 'package:video_downloader_test/features/videos_list/auxiliary_widgets/video_card/video_card_view.dart';
-
-import '../../models/video/video.dart';
 import 'video_bloc/video_bloc.dart';
 
-class VideosList extends StatefulWidget {
+class VideosList extends StatelessWidget {
   const VideosList({super.key});
 
-  @override
-  State<VideosList> createState() => _VideosListState();
-}
-
-class _VideosListState extends State<VideosList> {
-  GlobalKey<_VideosListState> globalKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: MenuButton(),
-      body: Padding(
+    return Padding(
         padding: const EdgeInsets.only(top: 44),
         child: BlocBuilder<VideoBloc, VideoState>(
           builder: (context, state) {
@@ -67,7 +51,7 @@ class _VideosListState extends State<VideosList> {
             return const Center(child: Text('Videos not found'));
           },
         ),
-      ),
-    );
+      );
+
   }
 }

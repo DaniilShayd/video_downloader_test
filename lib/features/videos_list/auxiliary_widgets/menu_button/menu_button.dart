@@ -11,7 +11,6 @@ class MenuButton extends StatefulWidget {
 }
 
 class _MenuButtonState extends State<MenuButton> {
-
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
@@ -36,7 +35,12 @@ class _MenuButtonState extends State<MenuButton> {
                     child: const Text("Добавить видео"),
                     onPressed: () {
                       Navigator.pop(context);
-                      _showDialog();
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return const DownloadVideoDialog();
+                        },
+                      );
                     },
                   ),
                 ],
@@ -48,14 +52,4 @@ class _MenuButtonState extends State<MenuButton> {
     );
   }
 
-  void _showDialog() {
-    // flutter defined function
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        // return object of type Dialog
-        return const DownloadVideoDialog();
-      },
-    );
-  }
 }

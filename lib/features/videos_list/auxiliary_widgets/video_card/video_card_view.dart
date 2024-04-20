@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:video_downloader_test/data/storage/video_storage.dart';
 
-import '../../../../models/video/video.dart';
+
 
 class VideoCardView extends StatelessWidget {
   final int index;
@@ -27,7 +27,6 @@ class VideoCardView extends StatelessWidget {
                         .video
                         .assets['thumbnail']
                         .toString(),
-
                 fit: BoxFit.fill,
                 loadingBuilder: (context, child, progress) {
                   return progress == null
@@ -46,7 +45,10 @@ class VideoCardView extends StatelessWidget {
             ]),
           ),
         ),
-        Text(VideoStorage().videosData[index].video.title, maxLines: 1,),
+        Text(
+          VideoStorage().videosData[index].video.title,
+          maxLines: 1,
+        ),
       ],
     );
   }

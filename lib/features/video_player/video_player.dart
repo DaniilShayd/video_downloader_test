@@ -45,7 +45,9 @@ class _VideoPlayerState extends State<VideoPlayer> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: ChangeVideoNameButton(videoIndex: index,),
+      floatingActionButton: ChangeVideoNameButton(
+        videoIndex: index,
+      ),
     );
   }
 

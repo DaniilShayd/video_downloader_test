@@ -5,8 +5,6 @@ import 'package:video_downloader_test/video_downloader_test.dart';
 import 'package:video_downloader_test/video_downloader_wrapper.dart';
 
 void main() {
-
-
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.blue,
   ));
