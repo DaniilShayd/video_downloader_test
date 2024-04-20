@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:video_downloader_test/features/videos_list/create_set_bloc/create_set_bloc.dart';
 
-import '../../../../models/video/video.dart';
 import '../download_video_dialog/download_video_dialog.dart';
 
 class MenuButton extends StatefulWidget {
@@ -28,6 +29,7 @@ class _MenuButtonState extends State<MenuButton> {
                   ElevatedButton(
                     child: const Text("Создать сет"),
                     onPressed: () {
+                      context.read<CreateSetBloc>().add(CreateSetEvent());
                       Navigator.pop(context);
                     },
                   ),

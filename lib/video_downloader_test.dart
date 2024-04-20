@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:video_downloader_test/features/videos_list/videos_list.dart';
 import 'package:video_downloader_test/routes/routes.dart';
 import 'package:video_downloader_test/theme/color_schemes.g.dart';
 

@@ -13,6 +13,7 @@ class NavigationPage extends StatefulWidget {
 
 class _NavigationPageState extends State<NavigationPage> {
   int currentPageIndex = 0;
+  bool activeSetCreate = false;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +40,7 @@ class _NavigationPageState extends State<NavigationPage> {
       ),
       body: <Widget>[
         const VideosList(),
-        VideoSetsList(),
+        const VideoSetsList(),
 
       ][currentPageIndex],
     );

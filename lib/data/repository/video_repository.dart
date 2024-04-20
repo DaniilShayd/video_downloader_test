@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:video_downloader_test/data/storage/video_storage.dart';
 import 'package:video_downloader_test/models/video_storage_item/video_storage_item.dart';
 import 'package:video_downloader_test/models/video_type/video_type.dart';
 
