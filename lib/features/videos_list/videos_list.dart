@@ -67,7 +67,7 @@ class _VideosListState extends State<VideosList> {
                                     padding: const EdgeInsets.only(right: 20),
                                     alignment: Alignment.topRight,
                                     child: Checkbox(
-                                      activeColor: Theme.of(context).primaryColor,
+                                      activeColor: Theme.of(context).primaryColor ,
                                       value: newSetList[index],
                                       onChanged: (bool? checkVideo) {
                                         setState(() {
