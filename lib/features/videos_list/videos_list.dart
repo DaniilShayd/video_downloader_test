@@ -20,6 +20,12 @@ class _VideosListState extends State<VideosList> {
   final List<bool?> newSetList = [];
 
   @override
+  void dispose() {
+    _setNameEditingController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 44),
